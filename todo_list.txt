@@ -1,0 +1,9 @@
+-> implement commands. only the clear command currently works.
+-> fix the visual bug when sending messages that happens on every other client
+-> make a password attempt limit (both server-side and client-side)
+-> make a max client count per ip (DDOS protection)
+-> make it so multiple clients cannot log in as the same account
+-> implement last-seen on server-side (mark log out date, if logged in say "is online", else spit out time since logout date)
+-> fully implement userlist
+-> add more error handling (specifically for when server is offline)
+-> ** test actually hosting shit. make sure it works not just locally

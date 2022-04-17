@@ -112,7 +112,7 @@ send_login_info(user, None, None)
 
 # await user existence response
 data = pickle.loads(clientSocket.recv(1024))
-user_hash = None
+user_hash = None  
 
 if data[1] == False: # username check returns false
     password = input("Enter a new password: ")

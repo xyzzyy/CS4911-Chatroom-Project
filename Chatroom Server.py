@@ -4,11 +4,7 @@ from random import randint
 from hashlib import sha256
 from threading import Thread
 
-<<<<<<< HEAD
-PORT = 12000 
-=======
-PORT = 443
->>>>>>> 2d64d0cc783c393f18b2a24a9125cc9e6bd6db2f
+PORT = 12000
 MAX_INTEGER = 2147483647
 connections = []
 user_list = []

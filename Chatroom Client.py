@@ -1,4 +1,4 @@
-import time, pickle
+import time, pickle, os
 from socket import *
 from threading import Thread, Barrier, Condition
 
@@ -10,6 +10,15 @@ local_commands_list = ['clear', 'exit', 'quit']
 loggedmessages = []
 bar = Barrier(2)
 con = Condition()
+
+def clear():
+    # windows
+    if os.name == 'nt':
+        _ = os.system('cls')
+
+    # mac and linux
+    else:
+        _ = os.system('clear')
 
 def timestamp():
     now = time.gmtime()
@@ -27,6 +36,19 @@ def timestamp():
     elif month == 11 and day <= 4:
         hour += 1
     return time.strftime('[{}:{}:{} UTC] '.format(str(hour).zfill(2), str(minute).zfill(2), str(second).zfill(2)))
+
+def recv_data():
+    try:
+        data = pickle.loads(clientSocket.recv(1024))
+    except Exception as e:
+        data = None
+        con.acquire()
+        clear()
+        print('Connection lost. Please close this window and relaunch to attempt to reconnect.')
+        input()
+        exit()
+
+    return data
 
 def send_message(user, user_hash, message):
     global serverIP, serverPort
@@ -96,33 +118,39 @@ def foreground_thread():
 
 def background_thread():
     while True:
-        data = pickle.loads(clientSocket.recv(1024)) # ['MSG', message to add]
+        data = recv_data() # ['MSG', message to add]
         con.acquire()
         loggedmessages.append(timestamp()+data[1])
         refresh()
         con.release()
 
 # connect to server
-clientSocket = socket(AF_INET, SOCK_STREAM)
-clientSocket.connect((serverIP, serverPort))
+try:
+    clientSocket = socket(AF_INET, SOCK_STREAM)
+    clientSocket.connect((serverIP, serverPort))
+except Exception as e:
+    print("Unable to connect to server. The server may currently be offline.")
+    input("Please hit the enter key to end the program. \n")
+    exit()
 
 # send username
 user = input("Enter your username: ")
 send_login_info(user, None, None)
 
 # await user existence response
-data = pickle.loads(clientSocket.recv(1024))
-user_hash = None  
+data = recv_data()
+user_hash = None
 
 if data[1] == False: # username check returns false
     password = input("Enter a new password: ")
     send_login_info(user, password, True) # add user and edit pass to new pass
-    user_hash = pickle.loads(clientSocket.recv(1024))[1] # returns user hash if user was added, None if user already existed
+    user_hash = recv_data()[1] # returns user hash if user was added, None if user already existed
 else:
     while user_hash == None:
         password = input("Enter your password: ")
         send_login_info(user, password, False)
-        user_hash = pickle.loads(clientSocket.recv(1024))[1]
+        user_hash = recv_data()[1]
+
         if (user_hash != None):
             print("you are in")
         else:

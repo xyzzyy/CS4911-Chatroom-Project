@@ -5,8 +5,8 @@ from threading import Thread, Barrier, Condition
 serverIP = 'localhost'
 serverPort = 12000
 line_count = 27
-commands_list = ['clear', 'exit', 'quit', 'whoami', 'identitycrisis', 'seen', 'userlist', 'amialone']
-local_commands_list = ['clear', 'exit', 'quit']
+commands_list = ['clear',   'exit', 'quit',   'whoami', 'identitycrisis',   'seen',   'userlist', 'amialone',   'help', '?', 'commands']
+local_commands_list = ['clear', 'exit', 'quit', 'help', '?', 'commands']
 loggedmessages = []
 bar = Barrier(2)
 con = Condition()
@@ -39,7 +39,7 @@ def timestamp():
 
 def recv_data():
     try:
-        data = pickle.loads(clientSocket.recv(1024))
+        data = pickle.loads(clientSocket.recv(1024)) # ['data type', data]
     except Exception as e:
         data = None
         con.acquire()
@@ -61,18 +61,27 @@ def send_message(user, user_hash, message):
 def process_command(user, user_hash, message):
     global loggedmessages, serverIP, serverPort
     loggedmessages.append(timestamp()+user+': '+message)
-    command = message[1:]
+    command = message[1:].split()
     refresh()
-    if command not in commands_list:
-        # send a message to just this client saying the command doesn't exist
+    if command[0] not in commands_list:
+        loggedmessages.append(timestamp()+'Command does not exist. Type /help for a list of commands.') # send a message to just this client saying the command doesn't exist
+        refresh()
         return
-    if command == local_commands_list[0]:
+    if command[0] == local_commands_list[0]:
         loggedmessages = [] # clears the messages on the client
         refresh()
-    elif command in local_commands_list[1:]:
+    elif command[0] in local_commands_list[1:2]:
         exit() # exit client
+    elif command[0] in local_commands_list[3:]:
+        loggedmessages.append(timestamp()+'Available commands:')
+        loggedmessages.append(timestamp()+'/help or /commands: shows this message.')
+        loggedmessages.append(timestamp()+'/exit or /quit: disconnects from the chat room.')
+        loggedmessages.append(timestamp()+'/whoami: returns what user you are logged in as.')
+        loggedmessages.append(timestamp()+'/seen {username}: returns when a user was last online.')
+        loggedmessages.append(timestamp()+'/userlist: returns a list of users currently in the room.')
+        refresh()
     else:
-        data = pickle.dumps(['CMD', user, user_hash, message])
+        data = pickle.dumps(['CMD', user, user_hash, command])
         clientSocket.sendto(data, (serverIP, serverPort))
 
 def send_login_info(user, password, new_user):
@@ -90,7 +99,7 @@ def send_login_info(user, password, new_user):
 def refresh():
     global loggedmessages
     if len(loggedmessages) > line_count:
-        loggedmessages = loggedmessages[1:]
+        loggedmessages = loggedmessages[len(loggedmessages)-line_count:]
     print('===================================================== Chat Room 1 =====================================================')
     for i in loggedmessages:
         print(i)
@@ -133,13 +142,19 @@ except Exception as e:
     input("Please hit the enter key to end the program. \n")
     exit()
 
-# send username
-user = input("Enter your username: ")
-send_login_info(user, None, None)
-
-# await user existence response
-data = recv_data()
+data = ['',None]
 user_hash = None
+while data[1] == None:
+    user = input("Enter your username: ")
+    send_login_info(user, None, None)
+    data = recv_data()
+    if data[1] == None:
+        print("Username invalid. Username must be 16 characters or less, alphanumeric, and not contain any illegal words.")
+        print("Please try again.")
+    elif data[1] == 'ACTIVE':
+        print("This account is already logged in.")
+        print("Please log into a different account.")
+        data[1] = None
 
 if data[1] == False: # username check returns false
     password = input("Enter a new password: ")
@@ -159,5 +174,7 @@ else:
 print('Connection established! Welcome {}!'.format(user))
 time.sleep(1)
 
-Thread(target=background_thread).start()
-Thread(target=foreground_thread).start()
+back = Thread(target=background_thread)
+back.start()
+fore = Thread(target=foreground_thread)
+fore.start()

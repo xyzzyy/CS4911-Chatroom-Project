@@ -2,81 +2,31 @@
     "template": {
         "Username": "",
         "Hash": "",
-        "Salt": ""
-    },
-    "bob": {
-        "Username": "bob",
-        "Hash": "7975da22a3625cf083d815a990fcc2bc03835771a62e789860e0a8c39597c97d",
-        "Salt": "dfa638eabb5fd7af64241b1e08e35d2b5fb900b88d49494179241664ff746b42"
-    },
-    "alice": {
-        "Username": "alice",
-        "Hash": "a3922d0983be30b8ae509a5e5d6fd50c8dabe3e21a4fd5e83de4f66a262b436a",
-        "Salt": "478795ca9762831f1741cb254e883bee55ce5450dbeebab965e8af5ea35b24b6"
-    },
-    "pythonlover420": {
-        "Username": "pythonlover420",
-        "Hash": "8bcbed4309b9ca96b59ed9d94bb0f2b6a0c355c474425d02c20e862fbd483923",
-        "Salt": "e700ac6d5b875a770c3496e220e0ecc1e24118d68daa7cbea91a9046bb868010"
-    },
-    "testman": {
-        "Username": "testman",
-        "Hash": "2cc5b9efc9e3206e20492eee34c1120f887f40887b08c652e288cfd90e997f19",
-        "Salt": "2ef1eb6a118f7e581921c9f4939b5c0863e1349068fb1c98b4c88d2a07760de7"
-    },
-    "userguy": {
-        "Username": "userguy",
-        "Hash": "97da9a52138cfefafb97815d97bdd45f65915e76b6b289247b67fe34d4d95a65",
-        "Salt": "352649fb60a066d4321d20e27a910ad2d7d6796c7152b6697414ecd7e69dfa67"
-    },
-    "al": {
-        "Username": "al",
-        "Hash": "24a5dd8602e05a3bde03cc61aaa933033b9bdd584a30178a57b92d2d0e5976de",
-        "Salt": "b4194fa6dd1c4cf1859913d4bf8b5a77448f51a18bed332c2011728f924f9790"
-    },
-    "abba": {
-        "Username": "abba",
-        "Hash": "9694bfa1853c0628a8adf0559138c3dcd54190a22297c86381b8f3977608af22",
-        "Salt": "1e56eca64babbf88b56bcec19bce19fdabf350927f2dc2b1ab56db6a43460035"
+        "Salt": "",
+        "Last Seen": ""
     },
     "xyzzy": {
         "Username": "xyzzy",
-        "Hash": "2b421722669a14aeae3457577df56de3012811729560dd3963590c55de8db0ee",
-        "Salt": "6762dbc8a92f5a6168f9a6467bb274079942e3ac5e6775cc1e71aebe12758674"
-    },
-    "someguy": {
-        "Username": "someguy",
-        "Hash": "9504ee7047d1413a425c6f8a14fa9c022d3edc09ddacae49b2b35a2d5aadc43c",
-        "Salt": "2739b1be215bfd549017e98a46c79ee9f54f0508993a4628a2edc163d390958c"
-    },
-    "mymans": {
-        "Username": "mymans",
-        "Hash": "aa8de25397c302347bc81afd7b0591089c7e34d8f978899d3d9f9baff4848ef9",
-        "Salt": "55df2482840709d54b0f71b544b544dffdcf49325d50798581f56b397abb8c01"
-    },
-    "alan": {
-        "Username": "alan",
-        "Hash": "1251cd245ce7ca1e93400894198dadbb6ecfb60915055d46a6bb7fa05bcdf5b7",
-        "Salt": "cdecacda54b4223d3cfbc6dcb703aecc029fe45d4cd1d4a589f13d1b20ac6c14"
-    },
-    "s": {
-        "Username": "s",
-        "Hash": "ed306d5bbde2b919063353254c4122857b5d47f5a7c6ec30bf01d4965ee13cb2",
-        "Salt": "43fe153635f6068241209fe51b62cef5f6fd25d1502d341ee918ba4a7c7a0a8f"
-    },
-    "pie": {
-        "Username": "pie",
-        "Hash": "b21897340d677d637bf636f28efbb843745ca0dcf9284ea546ce06abc949516a",
-        "Salt": "0ea39e6af243466fdd39b09b661ccf375244cbe35ae117fe7208deecf6f4339f"
-    },
-    "hi": {
-        "Username": "hi",
-        "Hash": "49eeeb9068232e3f7629fd547ef86fdadfa081c194f43c8ad330d7eeb67dad44",
-        "Salt": "f61cb7c392fd3227a0103f8145487c7a5371a0d04826ff29b47aea0a0fac5e6d"
+        "Hash": "6c5399e944acb87216b31daedc723e207d0dde79147165b3ebd2284f9e1a4043",
+        "Salt": "1dd7e2c0fb23aff5d2f9a9094cddab36f1186f8ae0a9a15de5d3f3ee4ec902fb",
+        "Last Seen": 1650570212.6390336
     },
     "a": {
         "Username": "a",
-        "Hash": "01fd5e560b60063ac00731fcfacf46acd5c7b393d36510797a642e6d131462f2",
-        "Salt": "3a2b63d2be5701223e7a15eaba863013226ccdd183512acd9da07d950bb7e557"
+        "Hash": "1010ea89166d1dff18a3471127886f3cd610270d4651f6f085aa807ab1522d86",
+        "Salt": "f63b4f4f37d4f5632f16be3f5ce873274f1b9dd308391728ef2dac45f4f5d9c8",
+        "Last Seen": 1650570327.711319
+    },
+    "d": {
+        "Username": "d",
+        "Hash": "9fece0aeeec0ad93c02addc2d963bf4d46d5166875e0d9530b5c24c9174594f7",
+        "Salt": "473082db273a25ba33359c6ce15326c0b50979cd6aa8cb2b55db91abc83ddd73",
+        "Last Seen": 1650570226.843723
+    },
+    "b": {
+        "Username": "b",
+        "Hash": "4bfb59536219f9b2350c604fbf72933c341c2e3e95f8325393fe4180801d52fb",
+        "Salt": "ff9217d6aeead7735dbb29cb3fdbad8eb97b1e950b3904209175a2ac90ab8a70",
+        "Last Seen": 1650570333.583572
     }
 }

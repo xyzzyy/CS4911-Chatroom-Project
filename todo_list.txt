@@ -1,4 +1,5 @@
 -> fix the visual bug when sending messages that happens on every other client
+-> fix how the server disconnect and exit works...
 -> make a password attempt limit (both server-side and client-side)
 -> make a max client count per ip (DDOS protection)
 XX -> make it so multiple clients cannot log in as the same account

@@ -8,7 +8,6 @@ line_count = 27
 commands_list = ['clear',   'exit', 'quit',   'whoami', 'identitycrisis',   'seen',   'userlist', 'amialone',   'help', '?', 'commands']
 local_commands_list = ['clear', 'exit', 'quit', 'help', '?', 'commands']
 loggedmessages = []
-bar = Barrier(2)
 con = Condition()
 
 def clear():
@@ -71,6 +70,7 @@ def process_command(user, user_hash, message):
         loggedmessages = [] # clears the messages on the client
         refresh()
     elif command[0] in local_commands_list[1:2]:
+        clientSocket.close() # close socket
         exit() # exit client
     elif command[0] in local_commands_list[3:]:
         loggedmessages.append(timestamp()+'Available commands:')

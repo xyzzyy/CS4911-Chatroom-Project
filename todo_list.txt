@@ -10,3 +10,7 @@ XX -> all other commands
 XX -> add more error handling (specifically for when server is offline)
 XX? works on mininet ->  test actually hosting shit. make sure it works not just locally
 -> make it so the server occasionally updates the last seen time for all online users
+
+-> add /myip command that tells a user what their ip is.
+-> add /me command for doing /me command things lol.
+-> maybe add a /version command that tells a user what version their client is and what the latest is (assuming server is always updated)
